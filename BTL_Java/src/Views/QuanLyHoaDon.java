@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Views;
 
 /**
  *
@@ -16,6 +16,8 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
      */
     public QuanLyHoaDon() {
         initComponents();
+        buttonGroupMa.add(jRadioButtonMaHD);
+        buttonGroupMa.add(jRadioButtonMaKH);
     }
 
     /**
@@ -27,6 +29,7 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupMa = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -36,23 +39,23 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jTextFieldNgayLap = new javax.swing.JTextField();
+        jTextFieldMaKH = new javax.swing.JTextField();
+        jTextFieldMaHD = new javax.swing.JTextField();
+        jTextFieldcu = new javax.swing.JTextField();
+        jTextFieldmoi = new javax.swing.JTextField();
+        jTextFieldtongtien = new javax.swing.JTextField();
+        jRadioButtonMaKH = new javax.swing.JRadioButton();
+        jRadioButtonMaHD = new javax.swing.JRadioButton();
+        jButtonTimKiem = new javax.swing.JButton();
+        jButtonXoa = new javax.swing.JButton();
+        jButtonCapNhat = new javax.swing.JButton();
+        jButtonLamMOi = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTabledata = new javax.swing.JTable();
         jSeparator2 = new javax.swing.JSeparator();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jButtonThanhToan = new javax.swing.JButton();
+        jButtonIn = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 0, 255));
@@ -77,39 +80,44 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel7.setText("TỔNG TIỀN");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldNgayLap.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldMaKH.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldMaHD.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldcu.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldmoi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldtongtien.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jRadioButton1.setText("Mã Khách hàng");
+        jRadioButtonMaKH.setText("Mã Khách hàng");
 
-        jRadioButton2.setText("Mã hóa đơn");
+        jRadioButtonMaHD.setText("Mã hóa đơn");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/search.png"))); // NOI18N
-        jButton1.setText("Tìm kiếm");
+        jButtonTimKiem.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jButtonTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/search.png"))); // NOI18N
+        jButtonTimKiem.setText("Tìm kiếm");
+        jButtonTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTimKiemActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/baseline_delete_forever_black_24dp.png"))); // NOI18N
-        jButton2.setText("Xóa");
+        jButtonXoa.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jButtonXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/baseline_delete_forever_black_24dp.png"))); // NOI18N
+        jButtonXoa.setText("Xóa");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/edit.png"))); // NOI18N
-        jButton3.setText("Cập Nhật");
+        jButtonCapNhat.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jButtonCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/edit.png"))); // NOI18N
+        jButtonCapNhat.setText("Cập Nhật");
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/refresh.png"))); // NOI18N
-        jButton4.setText("Refresh ");
+        jButtonLamMOi.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jButtonLamMOi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/refresh.png"))); // NOI18N
+        jButtonLamMOi.setText("Refresh ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTabledata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -117,15 +125,15 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                 "NGÀY LẬP", "MÃ KH", "MÃ HĐ", "CHỈ SỐ CŨ", "CHỈ SỐ MỚI", "TỔNG TIỀN"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTabledata);
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/accept-circular-button-outline.png"))); // NOI18N
-        jButton5.setText("THANH TOÁN");
+        jButtonThanhToan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/accept-circular-button-outline.png"))); // NOI18N
+        jButtonThanhToan.setText("THANH TOÁN");
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/print.png"))); // NOI18N
-        jButton6.setText("IN HÓA ĐƠN");
+        jButtonIn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/print.png"))); // NOI18N
+        jButtonIn.setText("IN HÓA ĐƠN");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,7 +159,7 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4)
+                            .addComponent(jButtonLamMOi)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
@@ -161,18 +169,18 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(117, 117, 117)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                                            .addComponent(jTextField2)
-                                            .addComponent(jTextField3)))
+                                            .addComponent(jTextFieldNgayLap, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                            .addComponent(jTextFieldMaKH)
+                                            .addComponent(jTextFieldMaHD)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(47, 47, 47)
-                                        .addComponent(jButton1)
+                                        .addComponent(jButtonTimKiem)
                                         .addGap(77, 77, 77)
-                                        .addComponent(jButton3)))
+                                        .addComponent(jButtonCapNhat)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(60, 60, 60)
-                                        .addComponent(jButton2)
+                                        .addComponent(jButtonXoa)
                                         .addGap(228, 228, 228))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,21 +192,21 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                                                     .addComponent(jLabel7))
                                                 .addGap(38, 38, 38)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                    .addComponent(jTextFieldmoi, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jTextFieldcu, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jTextFieldtongtien, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGap(86, 86, 86))))
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(jRadioButtonMaKH)
                                 .addGap(37, 37, 37)
-                                .addComponent(jRadioButton2)))))
+                                .addComponent(jRadioButtonMaHD)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonIn, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(113, 113, 113))
         );
         jPanel1Layout.setVerticalGroup(
@@ -208,14 +216,14 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(223, 223, 223)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2))
+                            .addComponent(jRadioButtonMaKH)
+                            .addComponent(jRadioButtonMaHD))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton4)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))
+                            .addComponent(jButtonTimKiem)
+                            .addComponent(jButtonLamMOi)
+                            .addComponent(jButtonXoa)
+                            .addComponent(jButtonCapNhat))
                         .addGap(31, 31, 31)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -227,27 +235,28 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldNgayLap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldcu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldmoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel6)
+                                .addComponent(jTextFieldMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel7)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTextFieldtongtien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButtonThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(53, 53, 53)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonIn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -275,14 +284,19 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonTimKiemActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.ButtonGroup buttonGroupMa;
+    private javax.swing.JButton jButtonCapNhat;
+    private javax.swing.JButton jButtonIn;
+    private javax.swing.JButton jButtonLamMOi;
+    private javax.swing.JButton jButtonThanhToan;
+    private javax.swing.JButton jButtonTimKiem;
+    private javax.swing.JButton jButtonXoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -291,17 +305,17 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButtonMaHD;
+    private javax.swing.JRadioButton jRadioButtonMaKH;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTable jTabledata;
+    private javax.swing.JTextField jTextFieldMaHD;
+    private javax.swing.JTextField jTextFieldMaKH;
+    private javax.swing.JTextField jTextFieldNgayLap;
+    private javax.swing.JTextField jTextFieldcu;
+    private javax.swing.JTextField jTextFieldmoi;
+    private javax.swing.JTextField jTextFieldtongtien;
     // End of variables declaration//GEN-END:variables
 }

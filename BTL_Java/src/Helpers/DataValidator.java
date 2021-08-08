@@ -1,5 +1,5 @@
 
-package my.com.qlsv.helpers;
+package Helpers;
 
 import java.awt.Color;
 import javax.swing.JPasswordField;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Views;
 
 /**
  *
@@ -16,6 +16,10 @@ public class GioiThieuDialog extends javax.swing.JDialog {
      */
     public GioiThieuDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+    public GioiThieuDialog()
+    {
         initComponents();
     }
 
@@ -53,6 +57,11 @@ public class GioiThieuDialog extends javax.swing.JDialog {
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/remove.png"))); // NOI18N
         jButton1.setText("Đóng");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,6 +113,12 @@ public class GioiThieuDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        TrangChu trangchu = new TrangChu();
+        trangchu.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Views;
 
 /**
  *
@@ -42,12 +42,12 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
         txtSdt = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTabledata = new javax.swing.JTable();
         btnTaomoi = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
         btnCapnhat = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonTim = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
@@ -80,7 +80,7 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
 
         txtSdt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTabledata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -88,7 +88,7 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
                 "MÃ KH", "HỌ TÊN", "ĐỊA CHỈ", "MÃ SỐ CÔNG TƠ", "SĐT"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTabledata);
 
         btnTaomoi.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnTaomoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/add (2).png"))); // NOI18N
@@ -106,9 +106,9 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/baseline_delete_forever_black_24dp.png"))); // NOI18N
         btnXoa.setText("Xóa");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/search.png"))); // NOI18N
-        jButton1.setText("Tìm kiếm");
+        jButtonTim.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButtonTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/search.png"))); // NOI18N
+        jButtonTim.setText("Tìm kiếm");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,7 +155,7 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
                                 .addGap(57, 57, 57)
                                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(50, 50, 50)
-                                .addComponent(jButton1))
+                                .addComponent(jButtonTim))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -206,7 +206,7 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
                             .addComponent(btnLuu)
                             .addComponent(btnCapnhat)
                             .addComponent(btnXoa)
-                            .addComponent(jButton1))
+                            .addComponent(jButtonTim))
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -251,7 +251,7 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnTaomoi;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonTim;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -262,7 +262,7 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTabledata;
     private javax.swing.JTextField txtDiachi;
     private javax.swing.JTextField txtHoten;
     private javax.swing.JTextField txtMaKh;
