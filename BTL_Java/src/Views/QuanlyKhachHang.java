@@ -5,6 +5,17 @@
  */
 package Views;
 
+import DAO.BienLaiDAO;
+import DAO.KhachHangDAO;
+import Helpers.MessaDialogHelper;
+import Models.BienLai;
+import Models.KhachHang;
+import Models.ListKhachHang;
+import static Views.QuanLyHoaDon.listBienLai;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
@@ -14,10 +25,16 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
     /**
      * Creates new form QuanlyKhachHang
      */
+    ListKhachHang listKhachHang = new ListKhachHang();
     public QuanlyKhachHang() {
         initComponents();
+        init();
     }
-
+    void init()
+    {
+        listKhachHang.setListKhachHang(KhachHangDAO.GetKhachHangs());
+        doHienThi(listKhachHang.getListKhachHang());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,23 +105,48 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
                 "MÃ KH", "HỌ TÊN", "ĐỊA CHỈ", "MÃ SỐ CÔNG TƠ", "SĐT"
             }
         ));
+        jTabledata.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTabledataMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTabledata);
 
         btnTaomoi.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnTaomoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/add (2).png"))); // NOI18N
-        btnTaomoi.setText("Tạo mới");
+        btnTaomoi.setText("Refresh");
+        btnTaomoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaomoiActionPerformed(evt);
+            }
+        });
 
         btnLuu.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/add.png"))); // NOI18N
         btnLuu.setText("Lưu");
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
+            }
+        });
 
         btnCapnhat.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnCapnhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/edit.png"))); // NOI18N
         btnCapnhat.setText("Cập Nhật");
+        btnCapnhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapnhatActionPerformed(evt);
+            }
+        });
 
         btnXoa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/baseline_delete_forever_black_24dp.png"))); // NOI18N
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         jButtonTim.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jButtonTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/search.png"))); // NOI18N
@@ -252,8 +294,179 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
 
     private void jButtonTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTimActionPerformed
         // TODO add your handling code here:
+        doSearch();
     }//GEN-LAST:event_jButtonTimActionPerformed
 
+    private void btnCapnhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapnhatActionPerformed
+        // TODO add your handling code here:
+         doUpdate();
+    }//GEN-LAST:event_btnCapnhatActionPerformed
+
+    private void jTabledataMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabledataMousePressed
+        // TODO add your handling code here:
+        getSelectRow();
+    }//GEN-LAST:event_jTabledataMousePressed
+
+    private void btnTaomoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaomoiActionPerformed
+        // TODO add your handling code here:
+        doClear();
+    }//GEN-LAST:event_btnTaomoiActionPerformed
+
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        // TODO add your handling code here:
+        doSave();
+    }//GEN-LAST:event_btnLuuActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        doDelete();
+    }//GEN-LAST:event_btnXoaActionPerformed
+   
+    
+    void doSave()
+    {
+        int index = listKhachHang.getKhachHangByMaKH(txtMaKh.getText());
+        if(index >= 0) 
+        {
+            
+            MessaDialogHelper.showMessageDialog(null, "Khach hang Da ton tai", "Da ton tai");
+            return;
+        }
+        else
+        {
+            if(listKhachHang.CheckMaCongTo(txtMacongto.getText())<0)
+            {
+                MessaDialogHelper.showMessageDialog(null, "Ma cong to Da ton tai", "Da ton tai");
+                return;
+            }
+        }
+        KhachHang newKhachHang = new KhachHang();
+        if(txtDiachi.getText().isEmpty() || txtHoten.getText().isEmpty()
+                || txtMaKh.getText().isEmpty() || txtMacongto.getText().isEmpty()
+                || txtSdt.getText().isEmpty())
+        {
+            MessaDialogHelper.showErrorDialog(null, "Thong tin con trong", "Nhap khong du");
+            return;
+        }
+        newKhachHang.setMaKH(txtMaKh.getText());
+        newKhachHang.setMaSoCongTo(txtMacongto.getText());
+        newKhachHang.setSDT(txtSdt.getText());
+        newKhachHang.setSoNha(txtDiachi.getText());
+        newKhachHang.setTenKH(txtHoten.getText());
+        try {
+            KhachHangDAO.Insert(newKhachHang);
+            listKhachHang.AddKhachHang(newKhachHang);
+            doHienThi(listKhachHang.getListKhachHang());
+        } catch (Exception e) {
+        }
+        
+    }
+    void doHienThi(ArrayList<KhachHang> list)
+    {
+        DefaultTableModel model = new DefaultTableModel();
+        model = (DefaultTableModel) jTabledata.getModel();
+        model.setRowCount(0);
+        for (KhachHang khachHang : list) {
+            Object[] row = {
+                khachHang.getMaKH(),khachHang.getTenKH(),khachHang.getSoNha(),khachHang.getMaSoCongTo(),khachHang.getSDT()
+            };
+            model.addRow(row);
+        }
+        jTabledata.setModel(model);
+    }
+    void doDelete()
+    {
+        int index = listKhachHang.getKhachHangByMaKH(txtMaKh.getText());
+        if(index == -1) 
+        {
+            MessaDialogHelper.showMessageDialog(null, "Khong ton tai", "Not Found");
+            return;
+        }
+        if(BienLaiDAO.SearchKH(txtMaKh.getText()))
+        {
+            MessaDialogHelper.showErrorDialog(null, "Some thing used this", "Constains");
+            return;
+        }
+        if(MessaDialogHelper.showConfirmDialog(null, "Co chac muon xoa khong", "Delete") == 0)
+        {
+            KhachHangDAO.Delete(txtMaKh.getText());
+            listKhachHang.RemoveByIndex(index);
+            doHienThi(listKhachHang.getListKhachHang());
+        }
+    }
+    void doClear()
+    {
+        txtMaKh.setText("");
+        txtHoten.setText("");
+        txtDiachi.setText("");
+        txtMacongto.setText("");
+        txtSdt.setText("");
+        doHienThi(listKhachHang.getListKhachHang());
+    }
+    void getSelectRow()
+    {
+        int row = jTabledata.getSelectedRow();
+         txtMaKh.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 0)));
+         txtHoten.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 1))); 
+         txtDiachi.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 2))); 
+         txtMacongto.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 3))); 
+         txtSdt.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 4))); 
+    }
+    void doSearch()
+    {
+        if(!txtMaKh.getText().isEmpty())
+        {
+            doHienThi(listKhachHang.SearchByMaKHList(txtMaKh.getText()));
+        }
+        else if(!txtSdt.getText().isEmpty())
+        {
+             doHienThi(listKhachHang.SearchBySDTList(txtSdt.getText()));
+        }
+        else if(!txtMacongto.getText().isEmpty())
+        {
+             doHienThi(listKhachHang.SearchByMaCongToList(txtMacongto.getText()));
+        }
+        else
+        {
+            MessaDialogHelper.showMessageDialog(null, "Chua nhap Day du", "Input Fail");
+        }
+        
+    }
+    void doUpdate()
+    {
+        int index = listKhachHang.getKhachHangByMaKH(txtMaKh.getText());
+        if(index == -1) 
+        {
+            MessaDialogHelper.showMessageDialog(null, "Khong ton tai", "Not Found");
+            return;
+        }
+        KhachHang newKhachHang = listKhachHang.getListKhachHang().get(index);
+        System.err.println(index);
+        if(!txtMaKh.getText().isEmpty())
+        {
+            newKhachHang.setMaKH(txtMaKh.getText());
+        }
+        if(!txtHoten.getText().isEmpty())
+        {
+            newKhachHang.setTenKH(txtHoten.getText());
+        }
+        
+        if(!txtDiachi.getText().isEmpty())
+        {
+            newKhachHang.setSoNha(txtDiachi.getText());
+        }
+        if(!txtMacongto.getText().isEmpty())
+        {
+            newKhachHang.setMaSoCongTo(txtMacongto.getText());
+        }
+        if(!txtSdt.getText().isEmpty())
+        {
+            newKhachHang.setSDT(txtSdt.getText());
+        }
+        KhachHangDAO.Update(newKhachHang);
+        listKhachHang.getListKhachHang().set(index,newKhachHang);
+        doHienThi(listKhachHang.getListKhachHang());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapnhat;

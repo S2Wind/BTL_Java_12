@@ -8,7 +8,6 @@ package DAO;
 import Helpers.DatabaseHelper;
 import Helpers.MessaDialogHelper;
 import Models.BienLai;
-import Models.ListBienLai;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -16,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import javax.security.auth.login.FailedLoginException;
 
 /**
  *
@@ -50,6 +48,28 @@ public class BienLaiDAO {
             MessaDialogHelper.showErrorDialog(null, e.getMessage(),"Search");
         }
         return null;
+    }
+    public static boolean SearchKH(String kh)
+    {
+        String sql = "select * "
+                + "from BIENLAI"
+                + "where Makh = ? ";
+        try(
+            Connection con = DatabaseHelper.openConnection();
+            PreparedStatement state = con.prepareStatement(sql);
+                )
+            {
+            state.setString(1, kh);
+            ResultSet results = state.executeQuery();
+            while(results.next()){
+                if(results.getString("MAKH").equals(kh));
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            MessaDialogHelper.showErrorDialog(null, e.getMessage(),"Search");
+        }
+        return false;
     }
     
     public static void UpdateByMaHD(BienLai bienLai)

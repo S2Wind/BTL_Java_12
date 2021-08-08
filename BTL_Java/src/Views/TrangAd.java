@@ -16,6 +16,9 @@ public class TrangAd extends javax.swing.JFrame {
     /**
      * Creates new form TrangAd
      */
+    static int role;
+    //role 0 is admin
+    //role 1 is user
     QuanLyHoaDon hd = new QuanLyHoaDon();
     QuanlyKhachHang kh = new QuanlyKhachHang();
     QuanLyNhanVien nv = new QuanLyNhanVien();
@@ -26,6 +29,17 @@ public class TrangAd extends javax.swing.JFrame {
         tpMainBoard.add(kh);
         tpMainBoard.add(hd);
         tpMainBoard.add(ph);
+        tpMainBoard.setSelectedIndex(2);
+    }
+    public TrangAd(int role)
+    {
+        initComponents();
+        tpMainBoard.add(nv);
+        tpMainBoard.add(kh);
+        tpMainBoard.add(hd);
+        tpMainBoard.add(ph);
+        tpMainBoard.setSelectedIndex(2);
+        this.role = role;
     }
 
     /**
@@ -75,6 +89,11 @@ public class TrangAd extends javax.swing.JFrame {
         btnDangXuat.setFocusable(false);
         btnDangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDangXuat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnDangXuat);
         jToolBar1.add(jSeparator6);
 
@@ -83,6 +102,11 @@ public class TrangAd extends javax.swing.JFrame {
         btnQLNV.setFocusable(false);
         btnQLNV.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnQLNV.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnQLNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLNVActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnQLNV);
         jToolBar1.add(jSeparator7);
 
@@ -196,6 +220,7 @@ public class TrangAd extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnQLPHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLPHActionPerformed
+        tpMainBoard.setSelectedIndex(3);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnQLPHActionPerformed
 
@@ -208,6 +233,19 @@ public class TrangAd extends javax.swing.JFrame {
         // TODO add your handling code here:
         tpMainBoard.setSelectedIndex(2);
     }//GEN-LAST:event_btnQLHDActionPerformed
+
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+        // TODO add your handling code here:
+        TrangChu trangchu = new TrangChu();
+        trangchu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDangXuatActionPerformed
+
+    private void btnQLNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLNVActionPerformed
+        // TODO add your handling code here:
+        if(role == 0)
+            tpMainBoard.setSelectedIndex(3);
+    }//GEN-LAST:event_btnQLNVActionPerformed
 
     /**
      * @param args the command line arguments

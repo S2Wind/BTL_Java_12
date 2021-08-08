@@ -324,7 +324,7 @@ public class TrangChu extends javax.swing.JFrame {
        int loginrole = NhanVienDAO.CheckUser(jTextFieldaccount.getText(), jTextFieldpassword.getText());
        if(loginrole >0)
        {
-            TrangAd ad = new TrangAd();
+            TrangAd ad = new TrangAd(loginrole);
             ad.setVisible(true);
             this.dispose();
        }
