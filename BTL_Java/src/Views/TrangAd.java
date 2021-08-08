@@ -5,6 +5,8 @@
  */
 package Views;
 
+import Helpers.MessaDialogHelper;
+
 /**
  *
  * @author AnhDT
@@ -14,8 +16,16 @@ public class TrangAd extends javax.swing.JFrame {
     /**
      * Creates new form TrangAd
      */
+    QuanLyHoaDon hd = new QuanLyHoaDon();
+    QuanlyKhachHang kh = new QuanlyKhachHang();
+    QuanLyNhanVien nv = new QuanLyNhanVien();
+    QuanLyPhanHoiPanel ph = new QuanLyPhanHoiPanel();
     public TrangAd() {
         initComponents();
+        tpMainBoard.add(nv);
+        tpMainBoard.add(kh);
+        tpMainBoard.add(hd);
+        tpMainBoard.add(ph);
     }
 
     /**
@@ -81,6 +91,11 @@ public class TrangAd extends javax.swing.JFrame {
         btnQLKH.setFocusable(false);
         btnQLKH.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnQLKH.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnQLKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLKHActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnQLKH);
         jToolBar1.add(jSeparator8);
 
@@ -89,6 +104,11 @@ public class TrangAd extends javax.swing.JFrame {
         btnQLHD.setFocusable(false);
         btnQLHD.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnQLHD.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnQLHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLHDActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnQLHD);
         jToolBar1.add(jSeparator9);
 
@@ -157,7 +177,7 @@ public class TrangAd extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1057, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1319, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(tpMainBoard)
@@ -168,7 +188,7 @@ public class TrangAd extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tpMainBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                .addComponent(tpMainBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -178,6 +198,16 @@ public class TrangAd extends javax.swing.JFrame {
     private void btnQLPHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLPHActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnQLPHActionPerformed
+
+    private void btnQLKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLKHActionPerformed
+        // TODO add your handling code here:
+        tpMainBoard.setSelectedIndex(1);
+    }//GEN-LAST:event_btnQLKHActionPerformed
+
+    private void btnQLHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLHDActionPerformed
+        // TODO add your handling code here:
+        tpMainBoard.setSelectedIndex(2);
+    }//GEN-LAST:event_btnQLHDActionPerformed
 
     /**
      * @param args the command line arguments

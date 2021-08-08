@@ -13,23 +13,23 @@ import java.time.LocalDate;
  * @author phand
  */
 public class BienLai {
-    String MaBL;
+    String MaHD;
     String MaKH;
     LocalDate NgayLap;
-    double ChiSoCu;
-    double ChiSoMoi;
-    double ThanhToan;
+    int ChiSoCu;
+    int ChiSoMoi;
+    int TongTien;
 
     public BienLai() {
     }
 
-    public BienLai(String MaBL, String MaKH, LocalDate NgayLap,  double ChiSoCu, double ChiSoMoi, double ThanhToan) {
-        this.MaBL = MaBL;
+    public BienLai(String MaBL, String MaKH, LocalDate NgayLap,  int ChiSoCu, int ChiSoMoi, int ThanhToan) {
+        this.MaHD = MaBL;
         this.MaKH = MaKH;
         this.NgayLap = NgayLap;
         this.ChiSoCu = ChiSoCu;
         this.ChiSoMoi = ChiSoMoi;
-        this.ThanhToan = ThanhToan;
+        this.TongTien = ThanhToan;
     }
 
     public KhachHang getKhachHang()
@@ -38,11 +38,11 @@ public class BienLai {
     }
         
     public String getMaBL() {
-        return MaBL;
+        return MaHD;
     }
 
     public void setMaBL(String MaBL) {
-        this.MaBL = MaBL;
+        this.MaHD = MaBL;
     }
 
     public String getMaKH() {
@@ -62,29 +62,27 @@ public class BienLai {
     }
 
 
-    public double getChiSoCu() {
+    public int getChiSoCu() {
         return ChiSoCu;
     }
 
-    public void setChiSoCu(double ChiSoCu) {
+    public void setChiSoCu(int ChiSoCu) {
         this.ChiSoCu = ChiSoCu;
     }
 
-    public double getChiSoMoi() {
+    public int getChiSoMoi() {
         return ChiSoMoi;
     }
 
-    public void setChiSoMoi(double ChiSoMoi) {
+    public void setChiSoMoi(int ChiSoMoi) {
         this.ChiSoMoi = ChiSoMoi;
     }
 
-    public double getThanhToan() {
-        return ThanhToan;
+    public int getThanhToan() {
+        TongTien = (ChiSoMoi - ChiSoCu)*668;
+        return TongTien;
     }
 
-    public void setThanhToan(double ThanhToan) {
-        this.ThanhToan = ThanhToan;
-    }
     
     
 }

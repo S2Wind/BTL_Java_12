@@ -325,7 +325,6 @@ public class TrangChu extends javax.swing.JFrame {
        if(loginrole >0)
        {
             TrangAd ad = new TrangAd();
-            ad.setLocation(400, 400);
             ad.setVisible(true);
             this.dispose();
        }

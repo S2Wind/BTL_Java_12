@@ -5,6 +5,14 @@
  */
 package Views;
 
+import DAO.BienLaiDAO;
+import Helpers.MessaDialogHelper;
+import Models.BienLai;
+import Models.ListBienLai;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
@@ -14,10 +22,14 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
     /**
      * Creates new form QuanLyHoaDon
      */
+    public static ListBienLai listBienLai = new ListBienLai();
     public QuanLyHoaDon() {
         initComponents();
         buttonGroupMa.add(jRadioButtonMaHD);
         buttonGroupMa.add(jRadioButtonMaKH);
+        jRadioButtonMaHD.setSelected(true);
+        listBienLai.setListBienLai(BienLaiDAO.GetBienLais());
+        doHienThi(listBienLai.getListBienLai());
     }
 
     /**
@@ -108,14 +120,29 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         jButtonXoa.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButtonXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/baseline_delete_forever_black_24dp.png"))); // NOI18N
         jButtonXoa.setText("Xóa");
+        jButtonXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonXoaActionPerformed(evt);
+            }
+        });
 
         jButtonCapNhat.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButtonCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/edit.png"))); // NOI18N
         jButtonCapNhat.setText("Cập Nhật");
+        jButtonCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCapNhatActionPerformed(evt);
+            }
+        });
 
         jButtonLamMOi.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButtonLamMOi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/refresh.png"))); // NOI18N
         jButtonLamMOi.setText("Refresh ");
+        jButtonLamMOi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLamMOiActionPerformed(evt);
+            }
+        });
 
         jTabledata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,6 +152,11 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                 "NGÀY LẬP", "MÃ KH", "MÃ HĐ", "CHỈ SỐ CŨ", "CHỈ SỐ MỚI", "TỔNG TIỀN"
             }
         ));
+        jTabledata.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTabledataMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTabledata);
 
         jButtonThanhToan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -134,6 +166,11 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         jButtonIn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/print.png"))); // NOI18N
         jButtonIn.setText("IN HÓA ĐƠN");
+        jButtonIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -285,9 +322,181 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTimKiemActionPerformed
-        // TODO add your handling code here:
+        doSearch();
     }//GEN-LAST:event_jButtonTimKiemActionPerformed
 
+    private void jButtonCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCapNhatActionPerformed
+        // TODO add your handling code here:
+        doUpdate();
+    }//GEN-LAST:event_jButtonCapNhatActionPerformed
+
+    private void jTabledataMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabledataMousePressed
+        // TODO add your handling code here:
+         getSelectRow();
+    }//GEN-LAST:event_jTabledataMousePressed
+
+    private void jButtonLamMOiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLamMOiActionPerformed
+        // TODO add your handling code here:
+        doClear();
+    }//GEN-LAST:event_jButtonLamMOiActionPerformed
+
+    private void jButtonInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInActionPerformed
+        // TODO add your handling code here:
+        goToHoaDonView();
+    }//GEN-LAST:event_jButtonInActionPerformed
+
+    private void jButtonXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonXoaActionPerformed
+        // TODO add your handling code here:
+        doDelete();
+    }//GEN-LAST:event_jButtonXoaActionPerformed
+    
+    void goToHoaDonView()
+    {
+        int row = jTabledata.getSelectedRow();
+        if(row >=0){
+            BienLai newBienLai = new BienLai();
+            newBienLai.setMaBL(jTextFieldMaHD.getText());
+            newBienLai.setMaKH(jTextFieldMaKH.getText());
+            newBienLai.setNgayLap(LocalDate.parse(jTextFieldNgayLap.getText()) );
+            newBienLai.setChiSoCu(Integer.parseInt(jTextFieldcu.getText()) );
+            newBienLai.setChiSoMoi(Integer.parseInt(jTextFieldmoi.getText()) );
+          int thanhtien = newBienLai.getThanhToan();
+          if(MessaDialogHelper.showConfirmDialog(null, "Co chac muon in khong", "In") == 0){
+            HoaDonView view = new HoaDonView(newBienLai);
+            view.setVisible(true);
+          }
+        }
+        else
+        {
+            MessaDialogHelper.showMessageDialog(null, "Please choose one", "Choose one");
+        }
+    }
+    
+    void doClear()
+    {
+        jTextFieldMaHD.setText("");
+        jTextFieldMaKH.setText("");
+        jTextFieldNgayLap.setText("");
+        jTextFieldcu.setText("");
+        jTextFieldmoi.setText("");
+        jTextFieldtongtien.setText("");
+        doHienThi(listBienLai.getListBienLai());
+    }
+    void getSelectRow()
+    {
+        int row = jTabledata.getSelectedRow();
+         jTextFieldNgayLap.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 0)));
+         jTextFieldMaKH.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 1))); 
+         jTextFieldMaHD.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 2))); 
+         jTextFieldcu.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 3))); 
+         jTextFieldmoi.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 4))); 
+         jTextFieldtongtien.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 5))); 
+    }
+    void doHienThi(ArrayList<BienLai> list)
+    {
+        DefaultTableModel model = new DefaultTableModel();
+        model = (DefaultTableModel) jTabledata.getModel();
+        model.setRowCount(0);
+        for (BienLai bienLai : list) {
+            Object[] row = {
+                bienLai.getNgayLap(),bienLai.getMaKH(),bienLai.getMaBL(),bienLai.getChiSoCu(),bienLai.getChiSoMoi(),bienLai.getThanhToan()
+            };
+            model.addRow(row);
+        }
+        jTabledata.setModel(model);
+    }
+    
+    void doDelete()
+    {
+        int index = listBienLai.getBienLaiByMaHD(jTextFieldMaHD.getText());
+        if(index == -1) 
+        {
+            MessaDialogHelper.showMessageDialog(null, "Khong ton tai", "Not Found");
+            return;
+        }
+        if(jRadioButtonMaHD.isSelected())
+        {
+            if(MessaDialogHelper.showConfirmDialog(null, "Co chac muon xoa khong", "Delete") == 0){
+                BienLaiDAO.DeleteByKH(jTextFieldMaHD.getText());
+                listBienLai.RemoveByIndex(index);
+            }
+        }
+        else if(jRadioButtonMaKH.isSelected())
+        {
+            if(MessaDialogHelper.showConfirmDialog(null, "Co chac muon xoa khong", "Delete") == 0){
+            BienLaiDAO.DeleteByKH(jTextFieldMaKH.getText());
+            listBienLai.RemoveByIndex(index);
+            }
+        }
+        else
+        {
+            MessaDialogHelper.showMessageDialog(null, "Chua nhap Day du", "Input Fail");
+            return;
+        }
+        doHienThi(listBienLai.getListBienLai());
+        
+    }
+    
+    void doSearch()
+    {
+        if(jRadioButtonMaHD.isSelected())
+        {
+            doHienThi(listBienLai.SearchByMaHD(jTextFieldMaHD.getText()));
+        }
+        else if(jRadioButtonMaKH.isSelected())
+        {
+            doHienThi(listBienLai.SearchByMaKH(jTextFieldMaKH.getText()));
+        }
+        else
+        {
+            MessaDialogHelper.showMessageDialog(null, "Chua nhap Day du", "Input Fail");
+        }
+        
+    }
+    
+    void doUpdate()
+    {
+        int index = listBienLai.getBienLaiByMaHD(jTextFieldMaHD.getText());
+        if(index == -1) 
+        {
+            MessaDialogHelper.showMessageDialog(null, "Khong ton tai", "Not Found");
+            return;
+        }
+        BienLai newBienLai = listBienLai.getListBienLai().get(index);
+        System.err.println(index);
+        if(!jTextFieldMaHD.getText().isEmpty())
+        {
+            newBienLai.setMaBL(jTextFieldMaHD.getText());
+        }
+        if(!jTextFieldMaKH.getText().isEmpty())
+        {
+            newBienLai.setMaKH(jTextFieldMaKH.getText());
+        }
+        
+        if(!jTextFieldNgayLap.getText().isEmpty())
+        {
+            newBienLai.setNgayLap(LocalDate.parse(jTextFieldNgayLap.getText()) );
+        }
+        if(!jTextFieldcu.getText().isEmpty())
+        {
+            newBienLai.setChiSoCu(Integer.parseInt(jTextFieldcu.getText()) );
+        }
+        if(!jTextFieldmoi.getText().isEmpty())
+        {
+            newBienLai.setChiSoMoi(Integer.parseInt(jTextFieldmoi.getText()) );
+        }
+        int thanhtien = newBienLai.getThanhToan();
+        if(jRadioButtonMaHD.isSelected())
+        {
+            BienLaiDAO.UpdateByMaHD(newBienLai);
+        }
+        else
+        {
+            BienLaiDAO.UpdateByMaHD(newBienLai);
+        }
+        listBienLai.getListBienLai().set(index,newBienLai);
+        doHienThi(listBienLai.getListBienLai());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupMa;

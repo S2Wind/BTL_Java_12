@@ -161,8 +161,8 @@ public class TraCuu extends javax.swing.JFrame {
     {
         jLabelmaHD.setText(searchBL.getMaBL());
         jLabelsdt.setText(sdt);
-        double sonuoc = searchBL.getChiSoMoi() - searchBL.getChiSoCu();
-        double thanhtien = sonuoc*668;
+        int sonuoc = searchBL.getChiSoMoi() - searchBL.getChiSoCu();
+        int thanhtien = sonuoc*668;
         jLabelsoNuoc.setText(String.valueOf(sonuoc));
         jLabelthanhtien.setText(String.valueOf(thanhtien));
     }

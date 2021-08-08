@@ -109,6 +109,11 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
         jButtonTim.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jButtonTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/search.png"))); // NOI18N
         jButtonTim.setText("Tìm kiếm");
+        jButtonTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTimActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -244,6 +249,10 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonTimActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
