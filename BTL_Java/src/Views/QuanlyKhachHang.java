@@ -3,7 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Views;
+
+import DAO.BienLaiDAO;
+import DAO.KhachHangDAO;
+import Helpers.MessaDialogHelper;
+import Models.BienLai;
+import Models.KhachHang;
+import Models.ListKhachHang;
+import static Views.QuanLyHoaDon.listBienLai;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,10 +25,16 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
     /**
      * Creates new form QuanlyKhachHang
      */
+    ListKhachHang listKhachHang = new ListKhachHang();
     public QuanlyKhachHang() {
         initComponents();
+        init();
     }
-
+    void init()
+    {
+        listKhachHang.setListKhachHang(KhachHangDAO.GetKhachHangs());
+        doHienThi(listKhachHang.getListKhachHang());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,12 +59,12 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
         txtSdt = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTabledata = new javax.swing.JTable();
         btnTaomoi = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
         btnCapnhat = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonTim = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
@@ -80,7 +97,7 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
 
         txtSdt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTabledata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -88,27 +105,57 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
                 "MÃ KH", "HỌ TÊN", "ĐỊA CHỈ", "MÃ SỐ CÔNG TƠ", "SĐT"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jTabledata.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTabledataMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTabledata);
 
         btnTaomoi.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnTaomoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/add (2).png"))); // NOI18N
-        btnTaomoi.setText("Tạo mới");
+        btnTaomoi.setText("Refresh");
+        btnTaomoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaomoiActionPerformed(evt);
+            }
+        });
 
         btnLuu.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/add.png"))); // NOI18N
         btnLuu.setText("Lưu");
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
+            }
+        });
 
         btnCapnhat.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnCapnhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/edit.png"))); // NOI18N
         btnCapnhat.setText("Cập Nhật");
+        btnCapnhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapnhatActionPerformed(evt);
+            }
+        });
 
         btnXoa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/baseline_delete_forever_black_24dp.png"))); // NOI18N
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/search.png"))); // NOI18N
-        jButton1.setText("Tìm kiếm");
+        jButtonTim.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButtonTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/search.png"))); // NOI18N
+        jButtonTim.setText("Tìm kiếm");
+        jButtonTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTimActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,7 +202,7 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
                                 .addGap(57, 57, 57)
                                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(50, 50, 50)
-                                .addComponent(jButton1))
+                                .addComponent(jButtonTim))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -206,7 +253,7 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
                             .addComponent(btnLuu)
                             .addComponent(btnCapnhat)
                             .addComponent(btnXoa)
-                            .addComponent(jButton1))
+                            .addComponent(jButtonTim))
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -245,13 +292,188 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTimActionPerformed
+        // TODO add your handling code here:
+        doSearch();
+    }//GEN-LAST:event_jButtonTimActionPerformed
+
+    private void btnCapnhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapnhatActionPerformed
+        // TODO add your handling code here:
+         doUpdate();
+    }//GEN-LAST:event_btnCapnhatActionPerformed
+
+    private void jTabledataMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabledataMousePressed
+        // TODO add your handling code here:
+        getSelectRow();
+    }//GEN-LAST:event_jTabledataMousePressed
+
+    private void btnTaomoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaomoiActionPerformed
+        // TODO add your handling code here:
+        doClear();
+    }//GEN-LAST:event_btnTaomoiActionPerformed
+
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        // TODO add your handling code here:
+        doSave();
+    }//GEN-LAST:event_btnLuuActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        doDelete();
+    }//GEN-LAST:event_btnXoaActionPerformed
+   
+    
+    void doSave()
+    {
+        int index = listKhachHang.getKhachHangByMaKH(txtMaKh.getText());
+        if(index >= 0) 
+        {
+            
+            MessaDialogHelper.showMessageDialog(null, "Khach hang Da ton tai", "Da ton tai");
+            return;
+        }
+        else
+        {
+            if(listKhachHang.CheckMaCongTo(txtMacongto.getText())<0)
+            {
+                MessaDialogHelper.showMessageDialog(null, "Ma cong to Da ton tai", "Da ton tai");
+                return;
+            }
+        }
+        KhachHang newKhachHang = new KhachHang();
+        if(txtDiachi.getText().isEmpty() || txtHoten.getText().isEmpty()
+                || txtMaKh.getText().isEmpty() || txtMacongto.getText().isEmpty()
+                || txtSdt.getText().isEmpty())
+        {
+            MessaDialogHelper.showErrorDialog(null, "Thong tin con trong", "Nhap khong du");
+            return;
+        }
+        newKhachHang.setMaKH(txtMaKh.getText());
+        newKhachHang.setMaSoCongTo(txtMacongto.getText());
+        newKhachHang.setSDT(txtSdt.getText());
+        newKhachHang.setSoNha(txtDiachi.getText());
+        newKhachHang.setTenKH(txtHoten.getText());
+        try {
+            KhachHangDAO.Insert(newKhachHang);
+            listKhachHang.AddKhachHang(newKhachHang);
+            doHienThi(listKhachHang.getListKhachHang());
+        } catch (Exception e) {
+        }
+        
+    }
+    void doHienThi(ArrayList<KhachHang> list)
+    {
+        DefaultTableModel model = new DefaultTableModel();
+        model = (DefaultTableModel) jTabledata.getModel();
+        model.setRowCount(0);
+        for (KhachHang khachHang : list) {
+            Object[] row = {
+                khachHang.getMaKH(),khachHang.getTenKH(),khachHang.getSoNha(),khachHang.getMaSoCongTo(),khachHang.getSDT()
+            };
+            model.addRow(row);
+        }
+        jTabledata.setModel(model);
+    }
+    void doDelete()
+    {
+        int index = listKhachHang.getKhachHangByMaKH(txtMaKh.getText());
+        if(index == -1) 
+        {
+            MessaDialogHelper.showMessageDialog(null, "Khong ton tai", "Not Found");
+            return;
+        }
+        if(BienLaiDAO.SearchKH(txtMaKh.getText()))
+        {
+            MessaDialogHelper.showErrorDialog(null, "Some thing used this", "Constains");
+            return;
+        }
+        if(MessaDialogHelper.showConfirmDialog(null, "Co chac muon xoa khong", "Delete") == 0)
+        {
+            KhachHangDAO.Delete(txtMaKh.getText());
+            listKhachHang.RemoveByIndex(index);
+            doHienThi(listKhachHang.getListKhachHang());
+        }
+    }
+    void doClear()
+    {
+        txtMaKh.setText("");
+        txtHoten.setText("");
+        txtDiachi.setText("");
+        txtMacongto.setText("");
+        txtSdt.setText("");
+        doHienThi(listKhachHang.getListKhachHang());
+    }
+    void getSelectRow()
+    {
+        int row = jTabledata.getSelectedRow();
+         txtMaKh.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 0)));
+         txtHoten.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 1))); 
+         txtDiachi.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 2))); 
+         txtMacongto.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 3))); 
+         txtSdt.setText(String.valueOf(jTabledata.getModel().getValueAt(row, 4))); 
+    }
+    void doSearch()
+    {
+        if(!txtMaKh.getText().isEmpty())
+        {
+            doHienThi(listKhachHang.SearchByMaKHList(txtMaKh.getText()));
+        }
+        else if(!txtSdt.getText().isEmpty())
+        {
+             doHienThi(listKhachHang.SearchBySDTList(txtSdt.getText()));
+        }
+        else if(!txtMacongto.getText().isEmpty())
+        {
+             doHienThi(listKhachHang.SearchByMaCongToList(txtMacongto.getText()));
+        }
+        else
+        {
+            MessaDialogHelper.showMessageDialog(null, "Chua nhap Day du", "Input Fail");
+        }
+        
+    }
+    void doUpdate()
+    {
+        int index = listKhachHang.getKhachHangByMaKH(txtMaKh.getText());
+        if(index == -1) 
+        {
+            MessaDialogHelper.showMessageDialog(null, "Khong ton tai", "Not Found");
+            return;
+        }
+        KhachHang newKhachHang = listKhachHang.getListKhachHang().get(index);
+        System.err.println(index);
+        if(!txtMaKh.getText().isEmpty())
+        {
+            newKhachHang.setMaKH(txtMaKh.getText());
+        }
+        if(!txtHoten.getText().isEmpty())
+        {
+            newKhachHang.setTenKH(txtHoten.getText());
+        }
+        
+        if(!txtDiachi.getText().isEmpty())
+        {
+            newKhachHang.setSoNha(txtDiachi.getText());
+        }
+        if(!txtMacongto.getText().isEmpty())
+        {
+            newKhachHang.setMaSoCongTo(txtMacongto.getText());
+        }
+        if(!txtSdt.getText().isEmpty())
+        {
+            newKhachHang.setSDT(txtSdt.getText());
+        }
+        KhachHangDAO.Update(newKhachHang);
+        listKhachHang.getListKhachHang().set(index,newKhachHang);
+        doHienThi(listKhachHang.getListKhachHang());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapnhat;
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnTaomoi;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonTim;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -262,7 +484,7 @@ public class QuanlyKhachHang extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTabledata;
     private javax.swing.JTextField txtDiachi;
     private javax.swing.JTextField txtHoten;
     private javax.swing.JTextField txtMaKh;

@@ -5,7 +5,7 @@
  */
 package MainRun;
 
-import GUI.TrangChu;
+import Views.TrangChu;
 
 /**
  *

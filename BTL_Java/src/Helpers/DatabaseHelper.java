@@ -1,5 +1,5 @@
 
-package my.com.qlsv.helpers;
+package Helpers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ public class DatabaseHelper {
     public static Connection openConnection() throws Exception
     {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String connectionUrl = "jdbc:sqlserver://localhost:1433;database=QLSV;";
+        String connectionUrl = "jdbc:sqlserver://localhost:1433;database=quanlytiennuoc;";
         String dbusername = "sa";
         String password = "213213";
         con = DriverManager.getConnection(connectionUrl, dbusername, password);
